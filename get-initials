@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+read -p "What is your full name? " -a fullName
+
+while [[ -z $fullName ]]; do
+        read -p "Please provide your name: " -a fullName
+done
+
+declare -u initials
+
+for i in ${fullName[@]}
+do
+    initials+=${i:0:1}
+done
+
+echo "Your initials are $initials"

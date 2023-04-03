@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+printf "%-28s: %s\n" "Machine hardware name" $(uname -m)
+printf "%-28s: %s\n" "Kernel name" $(uname -s)
+printf "%-28s: %s\n" "Network hostname" $(uname -n)
+printf "%-28s: %s\n" "Number of processing units" $(nproc)
+echo
+echo -e "\033[1;4;34mCPU Info:\033[0m"
+cat /proc/cpuinfo | grep 'vendor' | uniq
+cat /proc/cpuinfo | grep 'model name' | uniq
+cat /proc/cpuinfo | grep 'cpu MHz' | uniq
+cat /proc/cpuinfo | grep 'cache size' | uniq

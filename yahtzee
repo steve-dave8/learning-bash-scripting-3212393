@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+declare -a rolls
+declare -A numCount
+
+# Get 5 random numbers from 1 to 6:
+for i in {1..5}; do
+    num=$(( 1 + $RANDOM % 6 ))
+    rolls+=($num)
+    if [ -v "numCount[$num]" ]; then
+        ((numCount[$num]++))
+    else
+        numCount[$num]=1
+    fi
+done
+
+echo ${rolls[@]}
+echo ${numCount[@]}
+
+testnum=${rolls[0]}
+yahtzee=true
+for i in "${rolls[@]}"; do
+    if [[ "$testnum" != "$i" ]]; then
+        yahtzee=false
+        break
+    fi
+done
+
+if $yahtzee; then
+    echo "Yahtzee!"
+fi
+
+# TODO: test for other number combinations
